@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: user-service-db
+    image: postgres:18.3
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: user-service
