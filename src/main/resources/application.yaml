@@ -1,3 +1,10 @@
 spring:
   application:
     name: User_service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/user-service
+    username: root
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create
