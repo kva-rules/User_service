@@ -6,11 +6,14 @@ import com.cognizant.User_service.repository.DepartmentRepository;
 import com.cognizant.User_service.repository.UserRepository;
 import com.cognizant.User_service.service.DepartmentService;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class DepartmentServiceImpl implements DepartmentService {
 
     private final DepartmentRepository departmentRepository;
 
-    private DepartmentServiceImpl(DepartmentRepository departmentRepository) {
+public DepartmentServiceImpl(DepartmentRepository departmentRepository) {
         this.departmentRepository = departmentRepository;
     }
 

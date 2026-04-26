@@ -1,44 +1,105 @@
 # User Service
 
-## Overview
-// TODO
+User profile + department management microservice. Reads `X-User-Id` / `X-User-Role` headers that the API Gateway injects after `auth-service` validates the JWT, then serves profile CRUD and department lookups.
 
-[//]: # (TODO)
+## At a glance
+| | |
+|---|---|
+| **Port** | 8082 |
+| **Database** | postgres-user (`user_db`) |
+| **Kafka topics (in)** | `user.registered` (from auth-service) |
+| **Kafka topics (out)** | `user.profile-updated` |
+| **Swagger UI (direct)** | http://localhost:8082/swagger-ui.html |
+| **Swagger UI (via gateway)** | http://localhost:8080/swagger-ui.html?urls.primaryName=user-service |
+| **OpenAPI JSON** | http://localhost:8082/v3/api-docs |
+| **Java** | 21 (Temurin) |
+| **Spring Boot** | 3.3.5 |
 
-## Tech Stack
-- Java
-- Spring boot
-- Postgres DB
-- Swagger
+## What it does
+- Stores user profiles (name, department, bio, avatar URL) — the `authUserId` ties back to auth_db
+- Subscribes to `user.registered` from auth-service and creates a matching profile row
+- Serves `/api/users/{id}` for the frontend's logged-in user view
+- Department CRUD for admin UI
 
-## Local setup
+## API surface
 
-We use containers for local setup and these are managed by compose file.
+### Users (`/api/users`)
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| POST | `/api/users` | Bearer JWT | Create a new user profile |
+| GET | `/api/users/{id}` | Bearer JWT | Fetch a single user by UUID |
+| PUT | `/api/users/{id}` | Bearer JWT | Update an existing user profile |
+| GET | `/api/users` | Bearer JWT + `ROLE_ADMIN` | List every user (admin only) |
+
+### Departments (`/api/departments`)
+| Method | Path | Auth | Purpose |
+|---|---|---|---|
+| POST | `/api/departments` | Bearer JWT | Create a new department |
+
+All endpoints expect the `Authorization: Bearer <token>` header when called through the API Gateway. Responses are wrapped in the shared `ApiResponse<T>` envelope from `com.kva:common-library`.
+
+## Configuration
+| Env var | Yaml key | Default | Purpose |
+|---|---|---|---|
+| `SERVER_PORT` | `server.port` | `8082` | HTTP listener |
+| `SPRING_DATASOURCE_URL` | `spring.datasource.url` | `jdbc:postgresql://postgres-user:5432/user_db` | Postgres JDBC URL (container DNS) |
+| `SPRING_DATASOURCE_USERNAME` | `spring.datasource.username` | `postgres` | DB user |
+| `SPRING_DATASOURCE_PASSWORD` | `spring.datasource.password` | `postgres` | DB password |
+| `SPRING_JPA_HIBERNATE_DDL_AUTO` | `spring.jpa.hibernate.ddl-auto` | `update` | Schema strategy |
+| `SPRING_KAFKA_BOOTSTRAP_SERVERS` | `spring.kafka.bootstrap-servers` | `kafka:9092` | Kafka broker list |
+| `SPRING_KAFKA_CONSUMER_GROUP_ID` | `spring.kafka.consumer.group-id` | `user-service-group` | Consumer group |
+| `JWT_SECRET` | `jwt.secret` | `myVerySecretKeyForJWTThatIsLongEnoughForHS512Signature` | Must match auth-service |
+
+Activate the `local` profile (`SPRING_PROFILES_ACTIVE=local`) to point at `localhost` Postgres/Kafka instead of the container DNS names.
+
+## Kafka events
+- Consumes `user.registered` → creates empty profile linked to `authUserId`
+- Produces `user.profile-updated` on PUT/PATCH operations
+
+Consumer config uses `JsonDeserializer` with `spring.json.trusted.packages=*`, `auto-offset-reset=earliest`, and the `user-service-group` group ID. Producer uses `JsonSerializer` for values and `StringSerializer` for keys.
+
+## Build & run
 ```bash
-podman-compose up -d
+./services.sh start user-service
+```
+or
+```bash
+export JAVA_HOME=/opt/homebrew/Cellar/openjdk@21/21.0.11
+cd User_service
+mvn -DskipTests -Dmaven.test.skip=true spring-boot:run
 ```
 
-Start the spring-boot application
-
+## Docker
 ```bash
-./mvnw spring-boot:run
+docker build -t user-service:latest .
+docker run --rm -p 8082:8082 user-service:latest
 ```
 
-### Connecting to Postgres DB
-Use this connection details to connect to the postgres container
+## Kubernetes
+- Manifest: `k8s/user-service.yaml`
+- Service name: `user-service`
 
-To check if the container is running, run the following command and the output should list the container
+## Troubleshooting
 
-```bash
-podman container ls | grep user-service-db
-```
+**GET /api/users returns 403**
+The `@PreAuthorize("hasRole('ADMIN')")` on the list endpoint rejected your request. Your JWT needs `ROLE_ADMIN` — re-register through auth-service with an admin role or hit the role-assignment endpoint.
 
-**HOST** - localhost
+**GET /api/users/{id} returns 403**
+Your JWT has empty roles. Re-register or hit auth-service to assign a role. The gateway will not inject `X-User-Role` if the token has none.
 
-**PORT** - 5432
+**GET /api/users returns 500**
+Usually an empty database or a missing `authUserId` foreign key. Send a few POST /api/users first, or confirm the `user.registered` consumer is running.
 
-**USERNAME** - root
+**Startup fails with `Unable to connect to Kafka`**
+Check `SPRING_KAFKA_BOOTSTRAP_SERVERS`. Inside Docker Compose it must be `kafka:9092`; for bare-metal local runs switch to the `local` profile which targets `localhost:9092`.
 
-**PASSWORD** - password
-
-**DB** - user-service
+## Tech stack
+- Java 21
+- Spring Boot 3.3.5
+- Spring Security (JWT filter reading gateway-injected headers)
+- Spring Data JPA + PostgreSQL
+- Spring Kafka
+- springdoc-openapi 2.6.0
+- Lombok 1.18.34
+- jjwt 0.12.6
+- `com.kva:common-library` 1.0.0 (shared `ApiResponse<T>` envelope)

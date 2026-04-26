@@ -1,0 +1,94 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.5)
+
+2026-04-17T21:46:44.740+05:30  INFO 53350 --- [user-service] [           main] c.c.User_service.UserServiceApplication  : Starting UserServiceApplication v0.0.1-SNAPSHOT using Java 17.0.18 with PID 53350 (/Users/abhidhabmellwyn/Downloads/Services/User_service/target/User_service-0.0.1-SNAPSHOT.jar started by abhidhabmellwyn in /Users/abhidhabmellwyn/Downloads/Services/User_service)
+2026-04-17T21:46:44.742+05:30 DEBUG 53350 --- [user-service] [           main] c.c.User_service.UserServiceApplication  : Running with Spring Boot v3.3.5, Spring v6.1.14
+2026-04-17T21:46:44.743+05:30  INFO 53350 --- [user-service] [           main] c.c.User_service.UserServiceApplication  : The following 1 profile is active: "local"
+2026-04-17T21:46:45.505+05:30  INFO 53350 --- [user-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-17T21:46:45.538+05:30  INFO 53350 --- [user-service] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 29 ms. Found 2 JPA repository interfaces.
+2026-04-17T21:46:46.054+05:30  INFO 53350 --- [user-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2026-04-17T21:46:46.063+05:30  INFO 53350 --- [user-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-04-17T21:46:46.063+05:30  INFO 53350 --- [user-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-04-17T21:46:46.103+05:30  INFO 53350 --- [user-service] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-04-17T21:46:46.104+05:30  INFO 53350 --- [user-service] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1329 ms
+2026-04-17T21:46:46.277+05:30  INFO 53350 --- [user-service] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-17T21:46:46.312+05:30  INFO 53350 --- [user-service] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2026-04-17T21:46:46.328+05:30  INFO 53350 --- [user-service] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-04-17T21:46:46.466+05:30  INFO 53350 --- [user-service] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-17T21:46:46.480+05:30  INFO 53350 --- [user-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-04-17T21:46:46.571+05:30  INFO 53350 --- [user-service] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@35ff072c
+2026-04-17T21:46:46.572+05:30  INFO 53350 --- [user-service] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-04-17T21:46:46.586+05:30  WARN 53350 --- [user-service] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-17T21:46:46.999+05:30  INFO 53350 --- [user-service] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-17T21:46:47.041+05:30  INFO 53350 --- [user-service] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-17T21:46:47.247+05:30  WARN 53350 --- [user-service] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-17T21:46:47.555+05:30  WARN 53350 --- [user-service] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: fc1608a3-34af-4732-9182-9905a236d40f
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-17T21:46:47.563+05:30  INFO 53350 --- [user-service] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-04-17T21:46:47.602+05:30  INFO 53350 --- [user-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-04-17T21:46:47.612+05:30 DEBUG 53350 --- [user-service] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, DefaultLoginPageGeneratingFilter, DefaultLogoutPageGeneratingFilter, BasicAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-04-17T21:46:47.669+05:30  INFO 53350 --- [user-service] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-04-17T21:46:47.684+05:30  INFO 53350 --- [user-service] [           main] c.c.User_service.UserServiceApplication  : Started UserServiceApplication in 3.198 seconds (process running for 3.44)
+2026-04-17T21:47:12.320+05:30  INFO 53350 --- [user-service] [nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-17T21:47:12.320+05:30  INFO 53350 --- [user-service] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-04-17T21:47:12.321+05:30  INFO 53350 --- [user-service] [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-04-17T21:47:12.329+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /actuator/health
+2026-04-17T21:47:12.336+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /actuator/health
+2026-04-17T21:47:12.376+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-04-17T21:48:28.154+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /
+2026-04-17T21:48:28.155+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-04-17T21:48:28.178+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] o.s.s.w.s.HttpSessionRequestCache        : Saved request http://localhost:8082/?continue to session
+2026-04-17T21:48:28.180+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3da8a302, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2026-04-17T21:48:28.181+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@5d38758a
+2026-04-17T21:48:28.181+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8082/login
+2026-04-17T21:48:28.190+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /login
+2026-04-17T21:48:28.371+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2026-04-17T21:48:28.379+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-04-17T21:48:28.382+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-4] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3da8a302, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2026-04-17T21:48:28.390+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-4] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@5d38758a
+2026-04-17T21:48:28.394+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-4] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8082/login
+2026-04-17T21:48:28.399+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /login
+2026-04-17T21:49:20.083+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /login
+2026-04-17T21:49:20.286+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-6] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user 'MellwynA'
+2026-04-17T21:49:20.287+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-6] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /login?error
+2026-04-17T21:49:20.291+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /login?error
+2026-04-17T21:49:20.355+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2026-04-17T21:49:20.356+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-04-17T21:49:20.357+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-8] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3da8a302, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2026-04-17T21:49:20.358+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-8] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@5d38758a
+2026-04-17T21:49:20.358+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-8] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8082/login
+2026-04-17T21:49:20.363+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /login
+2026-04-17T21:49:36.105+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /login
+2026-04-17T21:49:36.205+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-1] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user 'mellwyn'
+2026-04-17T21:49:36.206+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-1] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /login?error
+2026-04-17T21:49:36.209+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /login?error
+2026-04-17T21:49:36.264+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2026-04-17T21:49:36.266+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-04-17T21:49:36.266+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-3] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3da8a302, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2026-04-17T21:49:36.267+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-3] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@5d38758a
+2026-04-17T21:49:36.267+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-3] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8082/login
+2026-04-17T21:49:36.269+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /login
+2026-04-17T21:49:41.794+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /login
+2026-04-17T21:49:41.879+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-5] o.s.s.a.dao.DaoAuthenticationProvider    : Failed to find user 'MellwynA'
+2026-04-17T21:49:41.879+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-5] o.s.s.web.DefaultRedirectStrategy        : Redirecting to /login?error
+2026-04-17T21:49:41.883+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /login?error
+2026-04-17T21:49:41.940+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /favicon.ico
+2026-04-17T21:49:41.941+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-04-17T21:49:41.941+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-7] s.w.a.DelegatingAuthenticationEntryPoint : Trying to match using And [Not [RequestHeaderRequestMatcher [expectedHeaderName=X-Requested-With, expectedHeaderValue=XMLHttpRequest]], MediaTypeRequestMatcher [contentNegotiationStrategy=org.springframework.web.accept.ContentNegotiationManager@3da8a302, matchingMediaTypes=[application/xhtml+xml, image/*, text/html, text/plain], useEquals=false, ignoredMediaTypes=[*/*]]]
+2026-04-17T21:49:41.941+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-7] s.w.a.DelegatingAuthenticationEntryPoint : Match found! Executing org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint@5d38758a
+2026-04-17T21:49:41.942+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-7] o.s.s.web.DefaultRedirectStrategy        : Redirecting to http://localhost:8082/login
+2026-04-17T21:49:41.944+05:30 DEBUG 53350 --- [user-service] [nio-8082-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /login
+2026-04-17T21:52:17.965+05:30  INFO 53350 --- [user-service] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-04-17T21:52:18.106+05:30  INFO 53350 --- [user-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-04-17T21:52:18.184+05:30  INFO 53350 --- [user-service] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
