@@ -90,6 +90,9 @@ Your JWT has empty roles. Re-register or hit auth-service to assign a role. The 
 **GET /api/users returns 500**
 Usually an empty database or a missing `authUserId` foreign key. Send a few POST /api/users first, or confirm the `user.registered` consumer is running.
 
+**User profile not found / features that display names show "unknown user"**
+`user_db.user_profiles` must contain a row with `auth_user_id` matching each UUID in `auth_db.users`. The service creates profiles automatically by consuming the `user.registered` Kafka event. If Kafka was down during seeding or the consumer group offset is stale, profiles will be absent. Fix: for each registered user, call `POST /api/users` with `{authUserId, email, name, role}` using the UUID from `auth_db.users.id`.
+
 **Startup fails with `Unable to connect to Kafka`**
 Check `SPRING_KAFKA_BOOTSTRAP_SERVERS`. Inside Docker Compose it must be `kafka:9092`; for bare-metal local runs switch to the `local` profile which targets `localhost:9092`.
 
