@@ -76,8 +76,19 @@ docker run --rm -p 8082:8082 user-service:latest
 ```
 
 ## Kubernetes
-- Manifest: `k8s/user-service.yaml`
-- Service name: `user-service`
+- Manifest: `k8s/user-service.yaml` (part of `k8s/services.yaml`)
+- Namespace: `ticketing-system`
+- Service DNS (intra-cluster): `user-service:8082`
+- Access via ingress: `http://ticketing.local/api/users/**`
+
+```bash
+# View logs
+./services.sh k8s-logs user-service
+# or: kubectl logs -n ticketing-system deployment/user-service -f
+
+# Restart the pod
+kubectl rollout restart deployment/user-service -n ticketing-system
+```
 
 ## Troubleshooting
 
